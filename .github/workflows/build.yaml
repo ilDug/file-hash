@@ -1,9 +1,6 @@
 name: Buld executables with PyInsaller
 
 on:
-    push:
-        branches:
-            - main
     workflow_dispatch:
 
 jobs:
@@ -28,7 +25,7 @@ jobs:
                   pyinstaller ./src/main.py --onefile --name fhash
 
             - name: Upload executables
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                   path: ./dist/fhash
                   name: fhash-linux
@@ -54,7 +51,7 @@ jobs:
                   pyinstaller ./src/main.py --onefile --name fhash.exe
 
             - name: Upload executables
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                   path: ./dist/fhash.exe
                   name: fhash-windows
