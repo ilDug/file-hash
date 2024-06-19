@@ -4,7 +4,7 @@ import typer
 
 from modules import FileArg, AlgorithmOpt, Check, hash_file, name_file
 
-version = "0.1.0"
+version = "0.2.0"
 
 help_text = f"""
 fhash version {version}

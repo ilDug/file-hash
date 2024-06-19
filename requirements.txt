@@ -1,3 +1,4 @@
+altgraph==0.17.4
 black==24.4.2
 click==8.1.7
 colorama==0.4.6
@@ -6,9 +7,14 @@ mdurl==0.1.2
 mypy-extensions==1.0.0
 packaging==24.1
 pathspec==0.12.1
+pefile==2023.2.7
 platformdirs==4.2.2
 Pygments==2.18.0
+pyinstaller==6.8.0
+pyinstaller-hooks-contrib==2024.7
+pywin32-ctypes==0.2.2
 rich==13.7.1
+setuptools==70.1.0
 shellingham==1.5.4
 typer==0.12.3
 typing_extensions==4.12.2
