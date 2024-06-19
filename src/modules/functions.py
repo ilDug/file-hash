@@ -15,3 +15,17 @@ def name_file(path: Path, hash: str) -> str:
     extension = path.suffix
     new_name = f"{path.stem}{suffix}{extension}"
     return path.with_name(new_name)
+
+
+def detect_algorithm(fingerprint: str) -> str:
+    if len(fingerprint) == 32:
+        return "md5"
+    elif len(fingerprint) == 40:
+        return "sha1"
+    elif len(fingerprint) == 64:
+        return "sha256"
+    elif len(fingerprint) == 128:
+        return "sha512"
+    else:
+        typer.secho(f"Nessin algoritmo rilevato", fg=typer.colors.RED)
+        raise typer.Exit(code=1)

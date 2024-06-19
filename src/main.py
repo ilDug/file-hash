@@ -2,13 +2,13 @@ from pathlib import Path
 import shutil
 import typer
 
-from modules import FileArg, AlgorithmOpt, Check, hash_file, name_file
+from modules import FileArg, AlgorithmOpt, Check, hash_file, name_file, detect_algorithm
 
 version = "0.2.0"
 
 help_text = f"""
 fhash version {version}
-Append hash to file name
+File Haseher Utils
 
 """
 
@@ -59,6 +59,23 @@ def copy(
     (_, path, new_name) = parse_input(file, algorithm)
     shutil.copy2(str(path), new_name)
     typer.echo(f"File copied: {Path(new_name).absolute()}")
+
+
+@app.command()
+def verify(file: FileArg = None):
+    """verifica che il file corrisponda all'hash contenuto nel nome"""
+    Check.file_defined(file)
+    path = Path(file)
+    Check.file_exists(path)
+    fingerprint = path.stem.split(".[")[-1]
+    fingerprint = fingerprint.split("]")[0]
+    algorithm = detect_algorithm(fingerprint)
+    hash = hash_file(path, algorithm)
+    res = hash == fingerprint
+    if res:
+        typer.secho(f"File {path} verified", fg=typer.colors.GREEN)
+    else:
+        typer.secho(f"File {path} not verified", fg=typer.colors.RED)
 
 
 @app.callback()
